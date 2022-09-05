@@ -1,0 +1,50 @@
+<%- include('partials/Header.ejs')%>
+<body>
+    <div class="container">
+        <h1 class="display-1">Fill the form</h1>
+        <form action="/events" method="post">
+            <!-- <select name="type" id="event">
+                <option value="event">event</option>
+            </select> -->
+            <div class="mb-3">
+                <label for="eventName">Event Name</label>
+                <input type="text" class="form-control" name="eventName" value="asdlfja">
+            </div>
+            <div class="mb-3">
+                <label for="tagline">Tag Line</label>
+                <input type="text" class="form-control" name="tagLine" value="asdlfja">
+            </div>
+            <div class="mb-3">
+                <label for="schedule">Date & Time</label>
+                <input type="datetime-local" name="schedule">
+
+            </div>
+            <div class="mb-3">
+                <label for="description">Description</label>
+                <input type="text" class="form-control" name="description" value="asdlfja">
+            </div>
+            <div class="mb-3">
+                <label for="moderator">Moderator</label>
+                <input type="text" class="form-control" name="moderator" value="asdlfja">
+            </div>
+            <div class="mb-3">
+                <label for="category">Category of the Event</label>
+                <input type="text" class="form-control" name="category" value="lasdjfliasjdf">
+            </div>
+            <div class="mb-3">
+                <label for="subcategory">Sub-Category of the Event</label>
+                <input type="text" class="form-control" name="subcategory" value="lasdjfliasjdf">
+            </div>
+            <div class="mb-3">
+                <label for="rigorRank">Rigor Rank</label>
+                <input type="number" class="form-control" name="rigorRank" value="5">
+            </div>
+            <div class="mb-3">
+                <label for="attendees">Attendees</label>
+                <input type="text" class="form-control" name="attendees" value="asdlfja">
+            </div>
+            <button type="submit" class="btn btn-dark">Submit</button>
+
+        </form>
+    </div>
+<%- include('partials/Footer.ejs') %>

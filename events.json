@@ -1,0 +1,10 @@
+{
+    "user1" : {
+       "type" : "event",
+       "name" : "password1",
+       "profession" : "teacher",
+       "uid": 1
+    }
+    
+   
+ }
