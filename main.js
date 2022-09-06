@@ -30,31 +30,7 @@ app.get("/", function (req, res) {
 app
   .route("/events")
   .get(function (req, res) {
-    let {page , limit, type } = req.query;
-    if (!page) {  
-      page = 1;
-  }
-  if (!limit) {
-      limit = 10;
-  }
-  if(!type)
-  {
-    if (type === 'latest') {
-      type = -1;
-    } else {
-      type = 1
-    }
-  }
-  
-    if (!req.query.id && !req.query.page && !req.query.limit) {
-      dbo
-        .collection("events")
-        .find({})
-        .toArray(function (err, result) {
-          if (err) throw err;
-          res.json(result);
-        });
-    } else if (req.query.id) {
+    if (req.query.id) {
       console.log(req.query.id);
       let id = req.query.id;
       dbo
@@ -64,32 +40,50 @@ app
           if (err) throw err;
           res.json(result);
         });
-    } else {
-      let page = req.query.page;
-      let limit = parseInt(req.query.limit);
-      try{
-       
-
-        
+    } else if (req.query.limit) {
+      // let page = req.query.page;
+      let { page, limit, type } = req.query;
+      if (!page) {
+        page = 1;
+      }
+      if (!limit) {
+        limit = 10;
+      }
+     
+        if (type == "latest") {
+          type = -1;
+        } else {
+          type = 1;
+        }
+   
+      limit =(req.query.limit);
+     
+      try {
         dbo
-        .collection("events")
-        .find()
-        .sort({eventName: 1})
-        .skip(limit * (page - 1))
-        .limit(limit)
-        .toArray(function (err, result) {
-          if (err) {
-            return err;
-          }
-          res.json(result);
+          .collection("events")
+          .find()
+          .sort({ schedule: type })
+          .skip(limit * (page - 1))
+          .limit( parseInt(limit))
+          .toArray(function (err, result) {
+            if (err) {
+              return err;
+            }
+            res.json(result);
+          });
+      } catch (err) {
+        res.status(500).json({
+          message: err,
         });
       }
-      catch(err)
-      {
-          res.status(500).json({
-            message: err
-          })
-      }
+    } else {
+      dbo
+        .collection("events")
+        .find({})
+        .toArray(function (err, result) {
+          if (err) throw err;
+          res.json(result);
+        });
     }
   })
   .post(async function (req, res) {
