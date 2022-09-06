@@ -40,7 +40,7 @@ app
           if (err) throw err;
           res.json(result);
         });
-    } else if (req.query.limit) {
+    } else if (req.query) {
       // let page = req.query.page;
       let { page, limit, type } = req.query;
       if (!page) {
@@ -55,7 +55,8 @@ app
         } else {
           type = 1;
         }
-   
+     console.log(type);
+     
       limit =(req.query.limit);
      
       try {
@@ -87,6 +88,8 @@ app
     }
   })
   .post(async function (req, res) {
+    console.log(req.body);
+    
     dbo.collection("events").insertOne(req.body, function (err, result) {
       if (err) {
         return err;
