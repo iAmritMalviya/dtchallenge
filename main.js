@@ -1,8 +1,15 @@
 var express = require("express");
 var ObjectID = require("mongodb").ObjectID;
 var MongoClient = require("mongodb").MongoClient;
-(ejs = require("ejs")), (bodyParser = require("body-parser"));
+var fs = require("fs");
+var multer = require("multer");
+ejs = require("ejs");
+path = require('path')
+bodyParser = require("body-parser");
 const app = express();
+
+
+
 
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -31,7 +38,6 @@ app
   .route("/events")
   .get(function (req, res) {
     if (req.query.id) {
-      console.log(req.query.id);
       let id = req.query.id;
       dbo
         .collection("events")
@@ -41,7 +47,6 @@ app
           res.json(result);
         });
     } else if (req.query) {
-      // let page = req.query.page;
       let { page, limit, type } = req.query;
       if (!page) {
         page = 1;
@@ -49,23 +54,23 @@ app
       if (!limit) {
         limit = 10;
       }
-     
-        if (type == "latest") {
-          type = -1;
-        } else {
-          type = 1;
-        }
-     console.log(type);
-     
-      limit =(req.query.limit);
-     
+
+      if (type == "latest") {
+        type = -1;
+      } else {
+        type = 1;
+      }
+      console.log(type);
+
+      limit = req.query.limit;
+
       try {
         dbo
           .collection("events")
           .find()
           .sort({ schedule: type })
           .skip(limit * (page - 1))
-          .limit( parseInt(limit))
+          .limit(parseInt(limit))
           .toArray(function (err, result) {
             if (err) {
               return err;
@@ -87,16 +92,44 @@ app
         });
     }
   })
-  .post(async function (req, res) {
-    console.log(req.body);
+  .post( function (req, res) {
+    console.log(req.file);
     
-    dbo.collection("events").insertOne(req.body, function (err, result) {
-      if (err) {
-        return err;
-      }
-      console.log("data inserted");
-      res.json(result);
-    });
+     
+      // if (req.file == null) {
+      //   res.send("you didnnot upload a picture ");
+      // }
+    
+
+        // var newImg = fs.readFileSync(req.file.path);
+        // var encImg = newImg.toString("base64");
+        var newItem = {
+          type: req.body.type,
+          eventName: req.body.eventName,
+          tagLine: req.body.tagLine,
+          schedule: req.body.schedule,
+          description: req.body.description,
+          moderator: req.body.moderator,
+          category: req.body.category,
+          subcategory: req.body.subcategory,
+          rigorRank: req.body.rigorRank,
+          attendees: req.body.attendees,
+          // size: req.file.size,
+          // img: Buffer(encImg, "base64"),
+          
+          // contentType: req.file.mimetype,
+        };
+
+
+        dbo.collection("events").insertOne(newItem, function (err, result) {
+          if (err) {
+            return err;
+          }
+          console.log("data inserted");
+          res.json(result);
+        });
+      
+    
   });
 app
   .route("/events/:id")
@@ -125,7 +158,7 @@ app
         res.json(result);
       });
   });
-var port = process.env.PORT || 3000;
+var port = 5000;
 app.listen(port, function () {
   console.log("Server Has Started!");
 });

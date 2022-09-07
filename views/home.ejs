@@ -1,57 +1,62 @@
 <%- include('partials/Header.ejs')%>
-<body>
-    <div class="container">
-        <h1 class="display-1">Fill the form</h1>
-        <form action="/events" method="post">
-          
-            <div class="mb-3">
-                <label for="type">Select the type:</label>
-                <select class="form-select" name="type" aria-label="Default select example">
-                    <option name="type1" value="Event">Event</option>
-                    <option name="type2" value="Party">Party</option>
-                    <option name="type3" value="Birthday_Party">Birthday Party</option>
-                  </select>
-            </div>
-            <div class="mb-3">
-                <label for="eventName">Event Name</label>
-                <input  type="text" class="form-control" name="eventName" required>
-            </div>
-            <div class="mb-3">
-                <label for="tagline">Tag Line</label>
-                <input  type="text" class="form-control" name="tagLine" required>
-            </div>
-            <div class="mb-3">
-                <label for="schedule">Date & Time</label>
-                <input  type="datetime-local" name="schedule" required>
 
-            </div>
-            <div class="mb-3">
-                <label for="description">Description</label>
-                <input  type="text" class="form-control" name="description" required>
-            </div>
-            <div class="mb-3">
-                <label for="moderator">Moderator</label>
-                <input  type="text" class="form-control" name="moderator" required>
-            </div>
-            <div class="mb-3">
-                <label for="category">Category of the Event</label>
-                <input  type="text" class="form-control" name="category" required>
-            </div>
-            <div class="mb-3">
-                <label for="subcategory">Sub-Category of the Event</label>
-                <input  type="text" class="form-control" name="subcategory" required>
-            </div>
-            <div class="mb-3">
-                <label for="rigorRank">Rigor Rank</label>
-                <input  type="number" class="form-control" name="rigorRank" required>
-            </div>
-            <div class="mb-3">
-                <label for="attendees">Attendees</label>
-                <input  type="text" class="form-control" name="attendees" required>
-            </div>
-          
-            <button type="submit" class="btn btn-dark">Submit</button>
+    <body>
+        <div class="container">
+            <h1 class="display-1">Fill the form</h1>
+            <form action="/events" method="post">
 
-        </form>
-    </div>
-<%- include('partials/Footer.ejs') %>
+                <div class="mb-3">
+                    <label for="type">Select the type:</label>
+                    <select class="form-select" name="type" aria-label="Default select example">
+                        <option name="type1" value="Event">Event</option>
+                        <option name="type2" value="Party">Party</option>
+                        <option name="type3" value="Birthday_Party">Birthday Party</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="eventName">Event Name</label>
+                    <input type="text" class="form-control" name="eventName" required>
+                </div>
+                <div class="mb-3">
+                    <label for="tagline">Tag Line</label>
+                    <input type="text" class="form-control" name="tagLine" required>
+                </div>
+                <div class="mb-3">
+                    <label for="schedule">Date & Time</label>
+                    <input type="datetime-local" name="schedule" required>
+
+                </div>
+                <div class="mb-3">
+                    <label for="description">Description</label>
+                    <input type="text" class="form-control" name="description" required>
+                </div>
+                <div class="mb-3">
+                    <label for="moderator">Moderator</label>
+                    <input type="text" class="form-control" name="moderator" required>
+                </div>
+                <div class="mb-3">
+                    <label for="category">Category of the Event</label>
+                    <input type="text" class="form-control" name="category" required>
+                </div>
+                <div class="mb-3">
+                    <label for="subcategory">Sub-Category of the Event</label>
+                    <input type="text" class="form-control" name="subcategory" required>
+                </div>
+                <div class="mb-3">
+                    <label for="rigorRank">Rigor Rank</label>
+                    <input type="number" class="form-control" name="rigorRank" required>
+                </div>
+                <div class="mb-3">
+                    <label for="attendees">Attendees</label>
+                    <input type="text" class="form-control" name="attendees" required>
+                </div>
+                <div class="mb-3">
+                    <label for="image" class="form-label">Upload Image:</label>
+                    <input class="form-control" type="file" id="image" name="image">
+                </div>
+
+                <button type="submit" class="btn btn-dark">Submit</button>
+
+            </form>
+        </div>
+        <%- include('partials/Footer.ejs') %>
