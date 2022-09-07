@@ -13,11 +13,17 @@
                 <div class="col-sm-6 col-md-4 col-lg-3">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title"><%= element.eventName %></h5>
-                            <p class="card-text"><%= element.description %>
+                            <h6 class="display-6">Type: <%=element.type%></h6>
+                            <hr>
+                            <h5 class="card-title">Event Name: <%= element.eventName %></h5>
+                            <p class="card-text">Tagline: <%= element.tagLine %>
+                            </p> <p class="card-text">Description: <%= element.description %>
                             </p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                            <span><%= element.schedule %></span>
+                          
+                            <img src="data:image/<%=element.contentType%>;base64,
+                            <%=element.img.toString('base64')%>" alt="image" style="width: 200px; height:200px ;">
+                            
+                            <p>Date: <%= element.schedule %></>
                         </div>
                     </div>
                 </div>

@@ -5,7 +5,6 @@ var fs = require("fs");
 var multer = require("multer");
 var path = require("path");
 
-// fileUpload = require('express-fileupload')
 ejs = require("ejs");
 path = require("path");
 bodyParser = require("body-parser");
@@ -24,32 +23,7 @@ var storage = multer.diskStorage({
 });
 var upload = multer({ storage: storage });
 
-// const imageStorage = multer.diskStorage({
-//   // Destination to store image
-//   destination: '/images',
-//     filename: (req, file, cb) => {
-//         cb(null, file.fieldname + '_' + Date.now()
-//            + path.extname(file.originalname))
-//           // file.fieldname is name of the field (image)
-//           // path.extname get the uploaded file extension
-//   }
-// });
 
-// const imageUpload = multer({
-//   storage: imageStorage,
-//   limits: {
-//     fileSize: 1000000 // 1000000 Bytes = 1 MB
-//   },
-//   fileFilter(req, file, cb) {
-//     if (!file.originalname.match(/\.(png|jpg)$/)) {
-//        // upload only png and jpg format
-//        return cb(new Error('Please upload a Image'))
-//      }
-//    cb(undefined, true)
-// }
-// })
-
-// app.use(fileUpload());
 let uid;
 let dbo;
 let url = "mongodb://localhost:27017/";
@@ -113,7 +87,8 @@ app
             if (err) {
               return err;
             }
-            res.json(result);
+            res.render('events', {data: result});
+            // res.json(result)
           });
       } catch (err) {
         res.status(500).json({
@@ -126,13 +101,13 @@ app
         .find({})
         .toArray(function (err, result) {
           if (err) throw err;
-          res.json(result);
+          // res.json(result);
+          res.render('events', {data: result})
         });
     }
   })
   .post(upload.single("image"), function (req, res) {
     console.log(req.file);
-    // res.send(req.file)
 
     if (req.file == null) {
       res.send("you didnnot upload a picture ");
@@ -152,17 +127,16 @@ app
         attendees: req.body.attendees,
         size: req.file.size,
         img: Buffer.from(encImg, "base64"),
-
         contentType: req.file.mimetype,
       };
-      console.log(newItem);
 
       dbo.collection("events").insertOne(newItem, function (err, result) {
         if (err) {
           return err;
         }
         console.log("data inserted");
-        res.json(result);
+        
+        // res.json( result);
       });
     }
   });
