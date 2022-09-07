@@ -3,7 +3,7 @@
     <body>
         <div class="container">
             <h1 class="display-1">Fill the form</h1>
-            <form action="/events" method="post">
+            <form action="/events" method="post" enctype="multipart/form-data">
 
                 <div class="mb-3">
                     <label for="type">Select the type:</label>
@@ -15,40 +15,40 @@
                 </div>
                 <div class="mb-3">
                     <label for="eventName">Event Name</label>
-                    <input type="text" class="form-control" name="eventName" required>
+                    <input type="text" class="form-control" name="eventName" >
                 </div>
                 <div class="mb-3">
                     <label for="tagline">Tag Line</label>
-                    <input type="text" class="form-control" name="tagLine" required>
+                    <input type="text" class="form-control" name="tagLine" >
                 </div>
                 <div class="mb-3">
                     <label for="schedule">Date & Time</label>
-                    <input type="datetime-local" name="schedule" required>
+                    <input type="datetime-local" name="schedule" >
 
                 </div>
                 <div class="mb-3">
                     <label for="description">Description</label>
-                    <input type="text" class="form-control" name="description" required>
+                    <input type="text" class="form-control" name="description" >
                 </div>
                 <div class="mb-3">
                     <label for="moderator">Moderator</label>
-                    <input type="text" class="form-control" name="moderator" required>
+                    <input type="text" class="form-control" name="moderator" >
                 </div>
                 <div class="mb-3">
                     <label for="category">Category of the Event</label>
-                    <input type="text" class="form-control" name="category" required>
+                    <input type="text" class="form-control" name="category" >
                 </div>
                 <div class="mb-3">
                     <label for="subcategory">Sub-Category of the Event</label>
-                    <input type="text" class="form-control" name="subcategory" required>
+                    <input type="text" class="form-control" name="subcategory" >
                 </div>
                 <div class="mb-3">
                     <label for="rigorRank">Rigor Rank</label>
-                    <input type="number" class="form-control" name="rigorRank" required>
+                    <input type="number" class="form-control" name="rigorRank" >
                 </div>
                 <div class="mb-3">
                     <label for="attendees">Attendees</label>
-                    <input type="text" class="form-control" name="attendees" required>
+                    <input type="text" class="form-control" name="attendees" >
                 </div>
                 <div class="mb-3">
                     <label for="image" class="form-label">Upload Image:</label>
